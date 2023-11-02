@@ -12,7 +12,7 @@ Example: John Stevens and Steven Smith should both show up if a user searches "s
 Example: John Stevens should show up if a user searches "john"
 
 ## Name: Mohd Diah A.Karim
-In the home exercise, I'm have created a backend service (.Net 6 with minimal API architecture) running on http://localhost:5044. This service can accepted a request from UI(http://localhost:3000/) which need to configure, from swagger UI (http://localhost:5044/swagger/index.html) or using PostMan.
+In the home exercise, I'm have created a backend service (.Net 6 with minimal API architecture) running on http://localhost:5044. This service can accept a request from UI(http://localhost:3000/) which need to configure, from swagger UI (http://localhost:5044/swagger/index.html) or using PostMan.
 
 The project solution built using a Minimal API approach in organizing its code into projects.
 With the  Minimal API approach, its facilitate an API development using compact code syntax and help us develop a lightweight APIs quickly without much complexity.
