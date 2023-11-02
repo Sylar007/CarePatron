@@ -1,5 +1,9 @@
-﻿using api.Data;
+﻿using api;
+using api.Data;
+using api.Endpoint;
+using api.Models;
 using api.Repositories;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,10 +31,11 @@ services.AddCors(options =>
 services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
 
 services.AddScoped<DataSeeder>();
+services.AddScoped<IValidator<Client>, ClientValidator>();
 services.AddScoped<IClientRepository, ClientRepository>();
 services.AddScoped<IEmailRepository, EmailRepository>();
 services.AddScoped<IDocumentRepository, DocumentRepository>();
-
+services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,15 +43,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+     {
+         options.SwaggerEndpoint("/swagger/v1/swagger.json", "CarePatron Swagger API");
+     });
 }
-
-app.MapGet("/clients", async (IClientRepository clientRepository) =>
-{
-    return await clientRepository.Get();
-})
-.WithName("get clients");
-
+app.ConfigureClientEndpoints();
 app.UseCors();
 
 // seed data
