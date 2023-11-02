@@ -15,14 +15,10 @@ namespace api.Repositories
     public class ClientRepository : IClientRepository
     {
         private readonly DataContext dataContext;
-        private readonly IEmailRepository emailRepository;
-        private readonly IDocumentRepository documentRepository;
 
-        public ClientRepository(DataContext dataContext, IEmailRepository emailRepository, IDocumentRepository documentRepository)
+        public ClientRepository(DataContext dataContext)
         {
             this.dataContext = dataContext;
-            this.emailRepository = emailRepository;
-            this.documentRepository = documentRepository;
         }
 
         public async Task Create(Client client)
