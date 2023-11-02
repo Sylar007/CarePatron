@@ -25,9 +25,19 @@ Apart from that, it also to serve a develop who is coming from different backgro
 
 **Additional Questions**
 1. If time wasn't a constraint what else would you have done?
-- I have added  Polly Retry mechanism to handle a flaky dependency which we have no control over. It is possible to add polly Circuit-breaker where if something goes wrong, hit the panic button that prevents any further attempts to repeat the operation. This is typically used when we have an extremely unreliable dependency. In this case, we want to stop calling it altogether, as additional attempts to call it might worsen the situation. An example of this might be an overloaded database. And also maybe i can also add more validation for Phone No based on Country Code and Numbers.
+- I have added  Polly Retry mechanism to handle a flaky dependency which we have no control over. It is possible to add polly Circuit-breaker where if something goes wrong, hit the panic button that prevents any further attempts to repeat the operation. This is typically used when we have an extremely unreliable dependency. In this case, we want to stop calling it altogether, as additional attempts to call it might worsen the situation. An example of this might be an overloaded database. And also maybe i can also add more validation for Phone No based on Country Code and Numbers. Apart from that maybe can add some authentication and authorisation to determine who can access the API and execute based on their permission levels (read, write)
   
 2. How was this test overall? I.e too hard, too easy, how long it took, etc
 - Overall the test is good which candidate need to think about to handle the simulation on external flaky dependency. Also need to put some validation for Email Address which normally i used FluentValidation for Backend services. I took about 30mins for reading and configure in my local setup and then around 4 hours to complete the code. By the way, the information and requirements from the Wiki is easy to understand with a clear instructions.
 
-
+**Extras**
+1. Quality and best practices
+- Usually i will create a Unit Test for the project but i'm not sure if it's part of the requirement
+2. Can this submission's code architecture easily scale to a codebase with 20 developers?
+- Yes, definitely. The one thing that i'm handling is spliting the Routing from the program.cs to specific Folder (Endpoint). So if Developer wants to add a new APIs related to different models, they can simply create a new endpoint file. Apart from that i'm also returning a standard Response object so it easier for Front End to see the Result(Data), Status Code, An array of error messages and IsSuccess flag. 
+3. How can you ensure data integrity in case of failures?
+- For ensuring data integrity we can utilise a key feature from Entity Framework which is transaction. A transaction is a sequence of one or more database operations (such as insert, update, delete or select) that are executed as a single unit of work. Transactions allow multiple users to work on a database concurrently without corrupting the data or causing inconsistency. This is really going to help Developer to implement, handling errors and rollbacks, transaction isolation levels, and performance considerations. 
+4. How can you ensure the API behaves as you intend it to?
+- For ensuring the API behaves, we need to add more control on exception handling (argument exception, nullreferenceException, argumentOutOfRange ans so on). We also can return a relevant status code according to the positive and negative flow. For example status code 200, 400, 401, 403, 500 and etc) 
+How can you improve the performance of this?
+- Usually what my team did before is do a benchmarking. A benchmark is a measurement or a set of measurements related to the performance of a piece of code in an application. We use BenchmarkDotNet library where we can determine the IO, Memory usage and Garbage collector utilisation.
