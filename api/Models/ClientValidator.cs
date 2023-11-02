@@ -10,6 +10,7 @@ namespace api.Models
             RuleFor(x => x.FirstName).NotNull();
             RuleFor(x => x.LastName).NotNull();
             RuleFor(x => x.PhoneNumber).NotNull();
+            RuleFor(x => x.Email).NotNull();
             RuleFor(x => x.Email).EmailAddress();
         }
     }
