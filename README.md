@@ -17,7 +17,7 @@ In the home exercise, I'm have created a backend service (.Net 6 with minimal AP
 
 The project solution built using a Minimal API approach in organizing its code into projects.
 With the  Minimal API approach, its facilitate an API development using compact code syntax and help us develop a lightweight APIs quickly without much complexity.
-Apart from that, it also to serve a develop who is coming from different background for e.g backend using Node JS. There are not much things to learn for them to get started. They no need to understand a more rigid architecture setup for e.g MVC and Web API
+Apart from that, it also to really help a developer who is coming from different background for e.g backend using Node JS. There are not much things to learn for them to get started. They no need to understand a more rigid architecture setup for e.g MVC, Blazor and Web API
 
 **How to run test**
 - Open command prompt and go to Web project folder "CarePatron.Api"
